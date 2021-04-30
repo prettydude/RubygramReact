@@ -2,7 +2,8 @@ import { createConsumer } from "@rails/actioncable";
 import store from "../store";
 import { selectCurrentUser, selectVerificationBeenAttempted } from "../stores/authStore";
 
-const WS_URL = "ws://localhost:3000/cable"
+// eslint-disable-next-line no-undef
+const WS_URL = __IS_PRODUCTION__ ? "wss://rubygramreact.herokuapp.com/cable" : "ws://localhost:3000/cable"
 const RECONNECT_INTERVAL = 10000;
 
 class Channel {

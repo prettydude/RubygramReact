@@ -1,7 +1,8 @@
-import { generateAuthActions} from '@keymastervn/redux-token-auth'
+import { generateAuthActions } from '@keymastervn/redux-token-auth';
 import store from '../store';
 
-const AUTH_URL = "http://localhost:3000/auth"
+// eslint-disable-next-line no-undef
+const AUTH_URL = __IS_PRODUCTION__ ? "https://rubygramreact.herokuapp.com/auth" : "http://localhost:3000/auth"
 
 export const initialAuthState = {
     currentUser: {

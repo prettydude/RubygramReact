@@ -1,10 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-
-import chatsReducer from './stores/chatsStore'
-import usersReducer from "./stores/userStore"
-import activeChatReducer from './stores/activeChatStore';
-import {initialAuthState} from './stores/authStore';
+/* eslint-disable no-undef */
 import { reduxTokenAuthReducer } from '@keymastervn/redux-token-auth';
+import { configureStore } from '@reduxjs/toolkit';
+import activeChatReducer from './stores/activeChatStore';
+import { initialAuthState } from './stores/authStore';
+import chatsReducer from './stores/chatsStore';
+import usersReducer from "./stores/userStore";
+
 
 const store = configureStore({
     reducer: {
@@ -13,13 +14,13 @@ const store = configureStore({
         activeChat: activeChatReducer,
         reduxTokenAuth: reduxTokenAuthReducer,
     },
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: !__IS_PRODUCTION__,
     preloadedState: {
         reduxTokenAuth: initialAuthState
     }
 })
 
-if(process.env.NODE_ENV !== 'production') {
+if(!__IS_PRODUCTION__) {
     window.store = store;
 }
 
