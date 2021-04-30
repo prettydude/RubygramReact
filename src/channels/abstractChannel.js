@@ -3,7 +3,7 @@ import store from "../store";
 import { selectCurrentUser, selectVerificationBeenAttempted } from "../stores/authStore";
 
 // eslint-disable-next-line no-undef
-const WS_URL = __IS_PRODUCTION__ ? "wss://rubygramreact.herokuapp.com/cable" : "ws://localhost:3000/cable"
+const WS_URL = __IS_PRODUCTION__ === "true" ? "wss://rubygramreact.herokuapp.com/cable" : "ws://localhost:3000/cable"
 const RECONNECT_INTERVAL = 10000;
 
 class Channel {
