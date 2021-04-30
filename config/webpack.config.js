@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
-const __IS_PRODUCTION__ = process.argv.mode === "production" || process.argv.includes("production");
+const __IS_PRODUCTION__ = process.env.NODE_ENV === "production" || process.argv.includes("production");
 const ROOT_DIRECTORY = path.join(__dirname, '..')
 const SRC_DIRECTORY = path.join(ROOT_DIRECTORY, 'src')
 
