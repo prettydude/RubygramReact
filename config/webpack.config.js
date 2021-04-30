@@ -28,10 +28,6 @@ const config = {
     new CopyWebpackPlugin([
       { from: path.join(SRC_DIRECTORY, 'assets'), to: path.join(ROOT_DIRECTORY, 'build') }
     ]),
-    new webpack.DefinePlugin({
-        __PUBLIC_URL__: JSON.stringify(process.env.PUBLIC_URL || ""),
-        __IS_PRODUCTION__: JSON.stringify(process.env.PRODUCTION || false),
-    }),
     new WorkboxPlugin.GenerateSW({
        // these options encourage the ServiceWorkers to get in there fast
        // and not allow any straggling "old" SWs to hang around

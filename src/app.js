@@ -11,7 +11,7 @@ import { initCurrentUserListener } from "./utils/currentUser"
 
 
 // eslint-disable-next-line no-undef
-console.log(`Running in ${__IS_PRODUCTION__ ? "production" : "development"} mode`);
+console.log(`Running in ${!!__IS_PRODUCTION__ ? "production" : "development"} mode`);
 
 const App = () => {
     // Init once

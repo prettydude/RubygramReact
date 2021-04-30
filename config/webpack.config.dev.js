@@ -1,4 +1,5 @@
 const path = require('path')
+const { webpack } = require('webpack')
 const config = require('./webpack.config.js')
 
 config.devServer = {
@@ -10,5 +11,9 @@ config.devServer = {
 }
 
 config.devtool = 'inline-source-map'
+
+config.plugins.push(new webpack.DefinePlugin({
+  __IS_PRODUCTION__: JSON.stringify(false)
+}))
 
 module.exports = config
