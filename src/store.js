@@ -14,13 +14,13 @@ const store = configureStore({
         activeChat: activeChatReducer,
         reduxTokenAuth: reduxTokenAuthReducer,
     },
-    devTools: !__IS_PRODUCTION__,
+    devTools: __IS_PRODUCTION__ !== "true",
     preloadedState: {
         reduxTokenAuth: initialAuthState
     }
 })
 
-if(!__IS_PRODUCTION__) {
+if(__IS_PRODUCTION__ !== "true") {
     window.store = store;
 }
 
