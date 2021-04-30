@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
-const __IS_PRODUCTION__ = process.env.NODE_ENV === "production" || process.argv.includes("production");
 const ROOT_DIRECTORY = path.join(__dirname, '..')
 const SRC_DIRECTORY = path.join(ROOT_DIRECTORY, 'src')
 
@@ -31,7 +30,7 @@ const config = {
     ]),
     new webpack.DefinePlugin({
         __PUBLIC_URL__: JSON.stringify(process.env.PUBLIC_URL || ""),
-        __IS_PRODUCTION__: __IS_PRODUCTION__
+        __IS_PRODUCTION__: JSON.stringify(process.env.PRODUCTION || false),
     }),
     new WorkboxPlugin.GenerateSW({
        // these options encourage the ServiceWorkers to get in there fast
