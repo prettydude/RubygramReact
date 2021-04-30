@@ -1,0 +1,13 @@
+.user-avatar {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+
+    .avatar-text {
+        color: white;
+        filter: drop-shadow(0 0 0.3rem rgba(0,0,0,0.3));
+    }
+}

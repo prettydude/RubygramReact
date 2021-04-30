@@ -1,0 +1,36 @@
+.user-panel {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75em;
+    border-bottom: 1px solid var(--borderColor);
+
+    .current-user {
+        display: flex;
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 1em;
+
+            .name {
+                font-size: bold;
+                margin-bottom: 0.2em;
+            }
+
+            .nickname {
+                color: var(--secondaryText);
+            }
+        }
+
+        .user-avatar {
+            width: 4em;
+            height: 4em;
+        }
+    }
+
+    .actions {
+        display: flex;
+        margin-top: 0.5em;
+    }
+}

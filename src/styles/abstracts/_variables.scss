@@ -1,0 +1,35 @@
+:root {
+    --accent: #50a2e9;
+    --accentHover: #4796E1;
+    --error: #FF0000;
+
+    --text: #222222;
+    --invertedText: white;
+    --secondaryText: #8b8b8b;
+
+    --borderColor: #707579;
+    --borderSecondaryColor: #c4c9cc;
+
+    --primaryBackground: #ffffff;
+    --primaryHover: #dadce0;
+
+    --ownMessageBackground: #eeffde;
+    --peerMessageBackground: white;
+
+    @media (prefers-color-scheme: dark) {
+        // TODO dark theme
+    }
+}   
+
+
+@mixin mobile {
+    @media only screen and (max-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 992px) {
+        @content;
+    }
+}

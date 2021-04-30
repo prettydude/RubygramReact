@@ -1,0 +1,33 @@
+ .VButton {
+    transition: all .2s ease-in-out;
+
+    font-family: "Roboto", sans-serif;
+    background-color: var(--accent);
+    color: var(--invertedText);
+    padding: 0.75em 1em;
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+
+    &:hover {
+        background-color: var(--accentHover);
+    }
+
+    &.uppercase {
+        text-transform: uppercase;
+    }
+}
+
+.VButton.flat {
+    background-color: var(--primaryBackground);
+    color: var(--accent);
+
+    &:hover {
+        background-color: var(--primaryHover);
+        color: var(--accent);
+    }
+}

@@ -1,0 +1,56 @@
+.chat-list {
+    flex-grow: 1;
+    overflow-y: auto;
+
+    .chat-list-item {
+        display: flex;
+        padding: 0.5em;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+
+        
+        &:hover, &.selected {
+            background-color: var(--primaryHover);
+        }
+
+        &:not(:first-child) {
+            border-top: 1px solid var(--borderSecondaryColor);
+        }
+
+        .user-avatar {
+            width: 3.5em;
+            height: 3.5em;
+            flex-shrink: 0;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            margin-left: 0.3em;
+            overflow: hidden;
+
+            .top-line {
+                display: flex;
+                margin-bottom: 0.2em;
+
+                .name {
+                    flex-grow: 1;
+                    font-weight: bold;
+                }
+
+                .time {
+                    font-size: 0.8em;
+                    color: var(--secondaryText);
+                }
+            }
+
+            .chat-preview {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+}

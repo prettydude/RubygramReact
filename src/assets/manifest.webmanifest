@@ -1,0 +1,31 @@
+{
+    "name": "Rubygram",
+    "short_name": "Rubygram",
+    "description": "Messenger on Ruby",
+    "display": "standalone",
+    "//start_url": ".",
+    "background_color": "#222B4F",
+    "theme_color": "#222B4F",
+    "icons": [
+    	{
+		    "src": "./icons/favicon-32x32.png",
+		    "sizes": "32x32",
+		    "type": "image/png"
+		},
+        {
+            "src": "./icons/shortcut-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./icons/shortcut-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./icons/favicon-32x32.svg",
+            "sizes": "1460x1460",
+            "type": "image/svg+xml"
+        }
+	]
+}

@@ -1,0 +1,49 @@
+.message-wrapper {
+    display: flex;
+    margin: 0.2em;
+
+    &.left {
+        align-self: flex-start;
+        
+        .message {
+            background-color: var(--peerMessageBackground);
+        }
+    }
+
+    &.right {
+        align-self: flex-end;
+
+        .message {
+            background-color: var(--ownMessageBackground);
+        }
+    }
+
+    .user-avatar {
+        width: 2.5em;
+        height: 2.5em;
+        align-self: flex-end;
+    }
+
+    .message {
+        display: flex;
+        flex-direction: column;
+        padding: 0.4em;
+        border-radius: 0.4em;
+        margin-left: 0.2em;
+
+        .name {
+            font-weight: bold;
+        }
+
+        .text {
+            margin: 0.2em;
+            white-space: pre-wrap;
+        }
+
+        .time {
+            align-self: flex-end;
+            font-size: 0.75em;
+            color: var(--secondaryText);
+        }
+    }
+}

@@ -1,0 +1,121 @@
+.VInput {
+    position: relative;
+    width: auto;
+    height: 2em;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+
+    label {
+        position: absolute;
+        top: 50%;
+        left: 0.35em;
+        transform: translateY(-50%);
+        cursor: text;
+        user-select: none;
+        transition: top 100ms, font-size 100ms, color 100ms;
+        font-size: 0.9em;
+        color: var(--borderColor);
+        padding: 0.3em;
+        border-radius: 1em;
+        pointer-events: none;
+    }
+
+    input {
+        height: 100%;
+        padding: 1em 0.5em;
+        border: 1px solid var(--borderSecondaryColor);
+        transition: 100ms ease-in-out box-shadow;
+        border-radius: 10px;
+        font-size: 1em;
+        outline: 0;
+
+        &:disabled {
+            background-color: var(--primaryHover);
+            //box-shadow: none;
+            border: none;
+
+            &:hover {
+                //box-shadow: none;
+                border: none;
+            }
+
+            color: var(--secondaryText)
+        }
+
+        &:hover {
+            //box-shadow: 0 0 0 1px #aaa;
+            border-color: #aaa;
+            border-width: 1px;
+        }
+
+        &::placeholder {
+            color: transparent;
+            user-select: none;
+        }
+
+        &.invalid {
+            //box-shadow: 0 0 0 2px $red;
+            border-color: var(--error);
+            border-width: 2px;
+
+            & + label {
+                color: var(--error);
+            }
+        }
+
+        &.success {
+            //box-shadow: 0 0 0 2px #26962f;
+            border-color: #26962f;
+            border-width: 2px;
+        }
+
+        &.success:focus {
+            //box-shadow: 0 0 0 2px #26962f;
+            border-width: 2px;
+            border-color: #26962f;
+        }
+
+        &.success:focus:not(:placeholder-shown) + label {
+            color: #26962f;
+        }
+
+        &.success:not(:focus):not(:placeholder-shown) + label {
+            color: #26962f;
+        }
+
+        &:focus {
+            //box-shadow: 0 0 0 2px $blue;
+            border-width: 2px;
+            border-color: var(--accent);
+        }
+
+        &.invalid:focus {
+            //box-shadow: 0 0 0 2px $red;
+            border-width: 2px;
+            border-color: var(--error);
+        }
+
+        &:focus:not(:placeholder-shown) + label {
+            color: var(--accent);
+        }
+
+        &.invalid:focus:not(:placeholder-shown) + label {
+            color: var(--error);
+        }
+
+        &:not(:focus):not(:placeholder-shown) + label {
+            color:var(--secondaryText);
+        }
+
+        &.invalid:not(:focus):not(:placeholder-shown) + label {
+            color: var(--error);
+        }
+
+        &:not(:placeholder-shown) + label {
+            background-color: #fff;
+            top: 0;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+    }
+}

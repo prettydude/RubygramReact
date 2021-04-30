@@ -1,0 +1,27 @@
+.chat-header {
+    display: flex;
+    padding: 0.3em;
+    border-bottom: 1px solid var(--borderColor);
+    background-color: var(--primaryBackground);
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1em;
+
+        .name {
+            font-weight: bold;
+        }
+
+        .nickname {
+            margin-top: 0.2em;
+            color: var(--secondaryText);
+        }
+    }
+
+    .user-avatar {
+        width: 2.5em;
+        height: 2.5em;
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>404</title>
+    </head>
+    <body>
+        <div id="redirect">Redirecting...</div>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                const basePath = "/rubygram/"
+                const encodedHash = "%23";
+
+                let currentPath = location.pathname.substring(basePath.length);
+
+                if(currentPath.startsWith(encodedHash)) { // hash got encoded by browser... bruh
+                    let path = currentPath.substring(encodedHash.length);
+                    const el = document.getElementById("redirect");
+                    location.replace(basePath+"#"+path);
+                } else {
+                    location.replace(basePath+"#"+currentPath); // .../GROUP -> .../#/GROUP
+                }
+            }
+        </script>
+    </body>
+</html>
