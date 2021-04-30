@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
-
-import { HashRouter, Switch, Route } from "react-router-dom"
-import {signInWrapper} from "./utils/authHelper"
-import {initCurrentUserListener} from "./utils/currentUser"
+import { HashRouter, Route, Switch } from "react-router-dom"
 import ChannelsManager from './channels/ChannelsManager'
-
-import Messenger from "./routes/Messenger"
 import Login from './routes/Login'
-import { verifyCredentials } from './stores/authStore'
+import Messenger from "./routes/Messenger"
 import store from './store'
+import { verifyCredentials } from './stores/authStore'
+import { signInWrapper } from "./utils/authHelper"
+import { initCurrentUserListener } from "./utils/currentUser"
+
+
+
+// eslint-disable-next-line no-undef
+console.log(`Running in ${__IS_PRODUCTION__ ? "production" : "development"} mode`);
 
 const App = () => {
     // Init once
