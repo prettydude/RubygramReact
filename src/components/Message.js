@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../stores/authStore";
-import { TIME_FORMAT } from "../utils/date";
+import { DATE_FORMAT, TIME_FORMAT } from "../utils/date";
 import "./Message.scss";
 import UserAvatar from "./UserAvatar";
 
@@ -27,7 +27,7 @@ const Message = ({message}) => {
                     <span className="text">
                         {message.body}
                     </span>
-                    <div className="time">
+                    <div className="time" title={new Date(message.updated_at).toLocaleString(window.navigator.language, {...TIME_FORMAT, ...DATE_FORMAT})}>
                         {new Date(message.updated_at).toLocaleString(window.navigator.language, TIME_FORMAT)}
                     </div>
                 </div>

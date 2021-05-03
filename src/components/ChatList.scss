@@ -18,8 +18,8 @@
         }
 
         .user-avatar {
-            width: 3.5em;
-            height: 3.5em;
+            width: 3.2em;
+            height: 3.2em;
             flex-shrink: 0;
         }
 
@@ -28,7 +28,7 @@
             flex-direction: column;
             flex-grow: 1;
             justify-content: center;
-            margin-left: 0.3em;
+            margin-left: 0.5em;
             overflow: hidden;
 
             .top-line {
@@ -50,6 +50,7 @@
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
+                color: var(--secondaryText)
             }
         }
     }
