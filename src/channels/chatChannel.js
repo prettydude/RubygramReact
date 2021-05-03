@@ -63,8 +63,8 @@ class ChatChannel extends Channel {
         this.performOrQueue("getConversation", {peer_id});
     }
 
-    requestChatInfo(peer_id) {
-        this.performOrQueue("getConversationInfo", {peer_id});
+    requestChatInfo(conversation_id) {
+        this.performOrQueue("getConversationInfo", {conversation_id});
     }
 
     sendTyping(peer_id) {

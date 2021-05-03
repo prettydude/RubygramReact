@@ -12,8 +12,8 @@ const Message = ({message}) => {
 
     const classes = classNames({
         "message-wrapper": true,
-        right: own,
-        left: !own,
+        out: own,
+        in: !own,
     })
 
     return (
@@ -23,11 +23,13 @@ const Message = ({message}) => {
                 {!own && <div className="name">
                     {message.user.name}
                 </div>}
-                <div className="text">
-                    {message.body}
-                </div>
-                <div className="time">
-                    {new Date(message.updated_at).toLocaleString(window.navigator.language, TIME_FORMAT)}
+                <div className="text-wrapper">
+                    <span className="text">
+                        {message.body}
+                    </span>
+                    <div className="time">
+                        {new Date(message.updated_at).toLocaleString(window.navigator.language, TIME_FORMAT)}
+                    </div>
                 </div>
             </div>
         </div>
