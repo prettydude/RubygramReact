@@ -17,13 +17,10 @@ const ChatList = () => {
     useEffect(() => {
         ChannelsManager.chats.requestAllChats();
     }, [])
-
-    //skip chats without messages
-    let filteredChats = chats.filter(chat => chat.messages.length);
     
     return (
         <div className="chat-list">
-            {filteredChats.length ? filteredChats.map(chat => 
+            {chats.length ? chats.map(chat => 
                                 <ChatFragment   chat={chat} 
                                                 user={user} 
                                                 selected={peer && (peer.id === (user.id === chat.recipient_id? chat.sender_id : chat.recipient_id))} 
@@ -36,10 +33,9 @@ const ChatList = () => {
 const ChatFragment = ({chat, user, selected}) => {
     let history = useHistory();
 
-    const lastMessage = chat.messages[chat.messages.length -1];
     const peer = chat.recipient_id === user.id ? chat.sender : chat.recipient;
 
-    const date = new Date(lastMessage.updated_at);
+    const date = new Date(chat.last_at);
 
     return (
     <div className={`chat-list-item ${selected ? "selected" : ""}`} onClick={() => {
@@ -51,7 +47,7 @@ const ChatFragment = ({chat, user, selected}) => {
                 <div className="name">{peer.name || "???"}</div>
                 <div className="time">{formatDate(date)}</div>
             </div>
-            <div className="chat-preview">{lastMessage.body}</div>
+            <div className="chat-preview">{chat.preview}</div>
         </div>
         
     </div>

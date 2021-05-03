@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import activeChatReducer from './stores/activeChatStore';
 import { initialAuthState } from './stores/authStore';
 import chatsReducer from './stores/chatsStore';
+import interfaceReducer from "./stores/interfaceStore";
 import usersReducer from "./stores/userStore";
 
 
@@ -12,6 +13,7 @@ const store = configureStore({
         chats: chatsReducer,
         users: usersReducer,
         activeChat: activeChatReducer,
+        interface: interfaceReducer,
         reduxTokenAuth: reduxTokenAuthReducer,
     },
     devTools: !__IS_PRODUCTION__,

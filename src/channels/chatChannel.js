@@ -38,10 +38,14 @@ class ChatChannel extends Channel {
                         store.dispatch(addChat(data.conversation));
                         break;
                     default:
-                        console.log(data);
+                        // console.log(data);
                 }
             },
         })
+    }
+
+    checkConnection() {
+        this.performOrQueue("checkConnection", {});
     }
 
     requestAllUsers() {

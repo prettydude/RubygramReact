@@ -13,8 +13,8 @@ const MessageContainer = () => {
 
     return (
         <div className="message-container">
-            {messages.map(msg => <Message key={msg.id} message={msg}/>)}
             <div className="messages-end" ref={lastMessage}/>
+            {messages.map(msg => <Message key={msg.id} message={msg}/>).reverse() /*flexbox bug*/}
         </div>
     )
 }

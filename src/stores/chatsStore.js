@@ -26,7 +26,8 @@ const chatsSlice = createSlice({
             const message = action.payload;
             const chat = state.chats.find(chat => chat.id === message.conversation_id);
             if (chat) {
-                chat.messages.push(message);
+                chat.preview = message.body
+                chat.last_at = message.created_at
                 state.chats.sort(chatComparator);
             } else {
                 ChannelsManager.chats.requestChatInfo(message.user_id); // message from new chat
@@ -37,17 +38,7 @@ const chatsSlice = createSlice({
 
 // TODO return only last message
 function chatComparator(chat1, chat2) {
-    const sorted1 = [...chat1.messages].sort(updatedComparator);
-    const sorted2 = [...chat2.messages].sort(updatedComparator);
-
-    const last1 = sorted1[sorted1.length - 1];
-    const last2 = sorted2[sorted2.length - 1];
-
-    return updatedComparator(last2, last1); // desc
-}
-
-function updatedComparator(obj1, obj2) {
-    return obj1.updated_at.localeCompare(obj2.updated_at);
+    return chat2.last_at.localeCompare(chat1.last_at); //desc
 }
 
 // Reducer
