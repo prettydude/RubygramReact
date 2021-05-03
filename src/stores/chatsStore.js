@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import ChannelsManager from "../channels/ChannelsManager";
+import store from "../store";
+
+const TYPING_TIMEOUT = 5000;
 
 const initialState = {
     chats: []
@@ -32,6 +35,27 @@ const chatsSlice = createSlice({
             } else {
                 ChannelsManager.chats.requestChatInfo(message.user_id); // message from new chat
             }
+        },
+        setTyping(state, action) {
+            const id = action.payload;
+            const chat = state.chats.find(chat => chat.id === id);
+            if(chat) {
+                chat.action = "Typing";
+                chat.actionEnd = Date.now() + TYPING_TIMEOUT;
+
+                setTimeout(() => {
+                    store.dispatch(checkTyping());
+                }, TYPING_TIMEOUT);
+            }
+        },
+
+        checkTyping(state, action) {
+            const now = Date.now();
+            state.chats.forEach(chat => {
+                if(chat.actionEnd < now) {
+                    chat.action = "";
+                }
+            })
         }
     },
 })
@@ -50,7 +74,9 @@ export const {
     removeChat,
     setChats,
     clearChats,
-    appendChatMessage
+    appendChatMessage,
+    setTyping,
+    checkTyping,
 } = chatsSlice.actions;
 
 //Selectors

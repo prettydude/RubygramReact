@@ -1,6 +1,6 @@
 import store from "../store";
 import { setConversation } from "../stores/activeChatStore";
-import { addChat, setChats } from "../stores/chatsStore";
+import { addChat, setChats, setTyping } from "../stores/chatsStore";
 import { setUsers } from "../stores/userStore";
 import Channel from "./abstractChannel";
 
@@ -37,6 +37,9 @@ class ChatChannel extends Channel {
                     case "getConversationInfo":
                         store.dispatch(addChat(data.conversation));
                         break;
+                    case "typing":
+                        store.dispatch(setTyping(data.conversation_id));
+                        break;
                     default:
                         // console.log(data);
                 }
@@ -62,6 +65,10 @@ class ChatChannel extends Channel {
 
     requestChatInfo(peer_id) {
         this.performOrQueue("getConversationInfo", {peer_id});
+    }
+
+    sendTyping(peer_id) {
+        this.performOrQueue("sendTyping", {peer_id});
     }
 }
 

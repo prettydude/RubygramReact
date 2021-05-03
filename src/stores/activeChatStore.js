@@ -46,7 +46,7 @@ const activeChatSlice = createSlice({
         },
 
         resetActiveChat(state) {
-            state = initialState
+            return initialState;
         },
 
         setConversation(state, action) {
@@ -77,3 +77,4 @@ export const {
 
 export const selectPeer = (state) => state.activeChat.peer;
 export const selectMessages = (state) => state.activeChat.messages;
+export const selectCurrentChatId = state => state.activeChat.conversationId;

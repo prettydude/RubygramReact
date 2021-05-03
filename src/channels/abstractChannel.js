@@ -15,7 +15,7 @@ class Channel {
         
         this.unsubscribe = store.subscribe(() => {
             let previousAuth = this.currentAuth
-            this.currentAuth = selectCurrentUser(store.getState())
+            this.currentAuth = selectCurrentUser(store.getState());
             if(!this.currentAuth || this.currentAuth.id !== previousAuth.id) { //user changed
                 this.reconnect();
             }

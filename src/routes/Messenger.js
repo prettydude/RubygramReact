@@ -8,14 +8,19 @@ import ChatList from '../components/ChatList';
 import MessageContainer from '../components/MessageContainer';
 import UserList from '../components/UserList';
 import UserPanel from '../components/UserPanel';
-import { selectPeer } from '../stores/activeChatStore';
+import { selectCurrentChatId, selectPeer } from '../stores/activeChatStore';
 import { selectCurrentUser } from '../stores/authStore';
+import { selectChats } from '../stores/chatsStore';
 import { useQuery } from '../utils/hooks';
 
 const Messenger = () => {
 	const user = useSelector(selectCurrentUser);
 	const peer = useSelector(selectPeer);
+	const chatId = useSelector(selectCurrentChatId);
+	const chats = useSelector(selectChats);
 	const history = useHistory();
+
+	const chat = chats.find(chat => chat.id === chatId);
 
 	const peerId = useQuery().peer;
 	useEffect(() => {
@@ -36,7 +41,7 @@ const Messenger = () => {
 			<div className="main">
 				{peer ?
 					<div className="chat" style={{backgroundImage: `url("./images/default_bg.jpg")`}}>
-						<ChatHeader peer={peer}/>
+						<ChatHeader peer={peer} action={chat?.action}/>
 						<MessageContainer/>
 						<ChatInput/>
 					</div>

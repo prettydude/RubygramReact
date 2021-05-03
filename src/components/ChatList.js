@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -37,6 +38,8 @@ const ChatFragment = ({chat, user, selected}) => {
 
     const date = new Date(chat.last_at);
 
+    const text = chat.action || chat.preview;
+
     return (
     <div className={`chat-list-item ${selected ? "selected" : ""}`} onClick={() => {
         history.replace(`?peer=${peer.id}`)
@@ -47,7 +50,7 @@ const ChatFragment = ({chat, user, selected}) => {
                 <div className="name">{peer.name || "???"}</div>
                 <div className="time">{formatDate(date)}</div>
             </div>
-            <div className="chat-preview">{chat.preview}</div>
+            <div className={classNames({"chat-preview": true, "loading-text": chat.action})}>{text}</div>
         </div>
         
     </div>

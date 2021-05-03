@@ -7,7 +7,13 @@ config.mode = 'production'
 
 config.optimization = {
   splitChunks: {
-    chunks: 'all'
+    chunks: 'all',
+    cacheGroups: {
+      styles: {
+        test: /\.(css|scss|less)$/,
+        enforce: true // force css in new chunks (ignores all other options)
+      }
+    }
   },
   minimize: true,
   minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],

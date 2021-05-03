@@ -1,3 +1,5 @@
+@import "../styles/base/animations";
+
 .chat-header {
     display: flex;
     padding: 0.3em;
@@ -14,10 +16,11 @@
             font-weight: bold;
         }
 
-        .nickname {
+        .nickname, .action {
             margin-top: 0.2em;
             color: var(--secondaryText);
         }
+        
     }
 
     .user-avatar {

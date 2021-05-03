@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import TextareaAutosize from 'react-textarea-autosize';
 import ChannelsManager from "../channels/ChannelsManager";
 import { selectPeer } from "../stores/activeChatStore";
 import "./ChatInput.scss";
 
+const TYPING_SEND_INTERVAL = 3000;
 
 const ChatInput = () => {
     const peer = useSelector(selectPeer);
-
     const [message, setMessage] = useState("");
+    const lastSentRef = useRef();
+
+    useEffect(() => {
+        setMessage(""); //reset messege on chat change
+    }, [peer.id]);
+
+    const sendTyping = () => {
+        if(!lastSentRef.current || (lastSentRef.current + TYPING_SEND_INTERVAL) < Date.now()) {
+            ChannelsManager.chats.sendTyping(peer.id);
+            lastSentRef.current = Date.now();
+        }
+    };
+    
 
     return (
         <div className="chat-input-wrapper">
@@ -19,7 +32,10 @@ const ChatInput = () => {
                                         minRows={3} 
                                         className="text-area" 
                                         placeholder="Enter message..." 
-                                        onChange={ev => setMessage(ev.currentTarget.value)} 
+                                        onChange={ev => {
+                                            setMessage(ev.currentTarget.value);
+                                            sendTyping();
+                                        }} 
                                         value={message}
                                         onKeyPress={ev => {
                                             if(ev.key === "Enter") {
