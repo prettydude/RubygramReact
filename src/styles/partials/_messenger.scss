@@ -9,8 +9,11 @@
         flex-grow: 1;
         flex-direction: column;
         width: 100%;
-        max-width: 350px;
-        min-width: 350px;
+
+        @include desktop {
+            max-width: 350px;
+            min-width: 350px;
+        }
         border-right: 1px solid var(--borderColor);
     }
 

@@ -17,6 +17,22 @@ html, body {
     background-color: var(--primaryBackground);
 }
 
+a, a:hover, a:visited, a:active {
+    color: var(--linkColor);
+}
+
+.mobile-hidden {
+    @include mobile {
+        display: none !important;
+    }
+}
+
+.desktop-hidden {
+    @include desktop {
+        display: none !important;
+    }
+}
+
 .loading-text::after {
     content: "";
     animation: loading-text 1s linear infinite;

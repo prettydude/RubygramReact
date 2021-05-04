@@ -67,6 +67,35 @@
                 margin: 0.2em 0;
                 white-space: pre-wrap;
                 word-wrap: break-word;
+
+                p {
+                    display: inline-block;
+                }
+
+                b, strong {
+                    font-weight: bold;
+                }
+
+                i, em {
+                    font-style: italic;
+                }
+
+                code {
+                    font-family: monospace;
+                }
+
+                pre {
+                    font-family: monospace;
+                    white-space: pre;
+                    padding: 0.5em;
+                    border-radius: 0.5em;
+                    background-color: var(--primaryHover);
+                    overflow: hidden;
+
+                    & > div {
+                        margin: -7px;
+                    }
+                }
             }
 
             .time {

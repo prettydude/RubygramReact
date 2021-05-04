@@ -13,9 +13,15 @@ const chatsSlice = createSlice({
     initialState,
     reducers: {
         addChat(state, action) {
-            if (state.chats.find(chat => chat.id === action.payload.id)) return state; //already stored
-            if (!action.payload.last_at) return state; // no messages
-            state.chats = [...state.chats, action.payload].sort(chatComparator);
+            const chat = state.chats.find(chat => chat.id === action.payload.id)
+            if (chat) {
+                //update info
+                chat.last_at = action.payload.last_at;
+                chat.preview = action.payload.preview;
+            } else {
+                if (!action.payload.last_at) return state; // no messages
+                state.chats = [...state.chats, action.payload].sort(chatComparator);
+            }
         },
         setChats(state, action) {
             state.chats = action.payload.sort(chatComparator);
@@ -30,8 +36,9 @@ const chatsSlice = createSlice({
             const message = action.payload;
             const chat = state.chats.find(chat => chat.id === message.conversation_id);
             if (chat) {
-                chat.preview = message.body
-                chat.last_at = message.created_at
+                chat.preview = message.body;
+                chat.last_at = message.created_at;
+                chat.action = ""; // reset typing
                 state.chats.sort(chatComparator);
             } else {
                 ChannelsManager.chats.requestChatInfo(message.conversation_id); // message from new chat

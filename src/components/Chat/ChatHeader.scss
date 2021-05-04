@@ -2,16 +2,23 @@
 
 .chat-header {
     display: flex;
+    align-items: center;
     padding: 0.3em;
     border-bottom: 1px solid var(--borderColor);
     background-color: var(--primaryBackground);
     width: 100%;
 
+    .back {
+        font-size: 1.5em;
+        width: 1.5em;
+        height: 1.5em;
+        margin-left: 0.5em;
+    }
+
     .info {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-left: 1em;
 
         .name {
             font-weight: bold;
@@ -21,11 +28,11 @@
             margin-top: 0.2em;
             color: var(--secondaryText);
         }
-        
     }
 
     .user-avatar {
         width: 2.5em;
         height: 2.5em;
+        margin: 0 1em;
     }
 }

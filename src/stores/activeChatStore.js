@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import ChannelsManager from "../channels/ChannelsManager";
 import { getUser } from "../utils/currentUser";
 
 const initialState = {
@@ -28,6 +29,9 @@ const activeChatSlice = createSlice({
         },
 
         deleteMessage(state, action) {
+            if(state.messages[state.messages.length - 1].id === action.payload) { // last
+                ChannelsManager.chats.requestChatInfo(state.conversation_id); //ask for new last message
+            }
             state.messages = state.messages.filter(msg => msg.id !== action.payload);
         },
 
@@ -47,6 +51,7 @@ const activeChatSlice = createSlice({
 
         clearPeer(state, action) {
             state.peer = null
+            state.conversationId = -1;
         },
 
         resetActiveChat(state) {

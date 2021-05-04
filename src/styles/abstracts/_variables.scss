@@ -6,6 +6,7 @@
     --text: #222222;
     --invertedText: white;
     --secondaryText: #8b8b8b;
+    --linkColor: green;
 
     --borderColor: #707579;
     --borderSecondaryColor: #c4c9cc;
@@ -21,6 +22,10 @@
 
     --chatBackground: #ffffff;
 
+    --chatInputColor: #ffffff;
+
+    --scrollbarColor: rgba(0,0,0,0.3);
+
     @media (prefers-color-scheme: dark) {
         --accent: #50a2e9;
         --accentHover: #4796E1;
@@ -29,6 +34,7 @@
         --text: #eeeeee;
         --invertedText: black;
         --secondaryText: #999999;
+        --linkColor: #1DB842;
 
         --borderColor: #232D52;
         --borderSecondaryColor: #2A3560;
@@ -43,18 +49,9 @@
         --sendHover: var(--borderSecondaryColor);
 
         --chatBackground: #0a1530;
+
+        --chatInputColor: var(--borderColor);
+
+        --scrollbarColor: rgba(255, 255, 255, 0.3);
     }
 }   
-
-
-@mixin mobile {
-    @media only screen and (max-width: 991.98px) {
-        @content;
-    }
-}
-
-@mixin desktop {
-    @media (min-width: 992px) {
-        @content;
-    }
-}

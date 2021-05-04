@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import ChannelsManager from '../channels/ChannelsManager';
 import ChatHeader from '../components/Chat/ChatHeader';
@@ -8,7 +9,7 @@ import MessageContainer from '../components/Chat/MessageContainer';
 import ChatList from '../components/LeftBar/ChatList';
 import SearchPanel from '../components/LeftBar/SearchPanel';
 import UserPanel from '../components/LeftBar/UserPanel';
-import { selectCurrentChatId, selectPeer } from '../stores/activeChatStore';
+import { resetActiveChat, selectCurrentChatId, selectPeer } from '../stores/activeChatStore';
 import { selectCurrentUser } from '../stores/authStore';
 import { selectChats } from '../stores/chatsStore';
 import { selectSearchMode } from '../stores/interfaceStore';
@@ -22,6 +23,7 @@ const Messenger = () => {
 
 	const searchMode = useSelector(selectSearchMode);
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	const chat = chats.find(chat => chat.id === chatId);
 
@@ -31,6 +33,7 @@ const Messenger = () => {
 			ChannelsManager.chats.requestChat(+peerId);
 		} else {
 			history.replace("?");
+			dispatch(resetActiveChat());
 		}
 	}, [peerId]);
 
@@ -41,7 +44,10 @@ const Messenger = () => {
 					<SearchPanel/>
 				</div>
 				:
-				<div className="left-bar">
+				<div className={classNames({
+					"left-bar": true,
+					"mobile-hidden": !!peer
+				})}>
 					<UserPanel user={user}/>
 					<ChatList/>
 				</div>
@@ -54,7 +60,7 @@ const Messenger = () => {
 						<ChatInput/>
 					</div>
 					:
-					<div className="select-chat">
+					<div className="select-chat mobile-hidden">
 						<div className="select-chat-message">Select chat</div>
 					</div>
 				}

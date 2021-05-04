@@ -1,7 +1,14 @@
+@import "../../styles/abstracts/mixins";
+
 .chat-input-wrapper {
     display: flex;
     flex-shrink: 0;
     padding: 0.5em 20%;
+
+    @include mobile {
+        padding: 0.5em 1em;
+    }
+
     width: 100%;
     max-height: 10em;
 
@@ -29,7 +36,7 @@
             .text-area {
                 width: 100%;
                 margin-bottom: -3px;
-                background-color: var(--borderColor);
+                background-color: var(--chatInputColor);
                 color: var(--text);
 
                 padding: 0.5em 1em 0.5em 0.5em;
