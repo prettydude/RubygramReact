@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import ChannelsManager from "../channels/ChannelsManager";
-import { selectUsers } from "../stores/userStore";
+import ChannelsManager from "../../channels/ChannelsManager";
+import { selectUsers } from "../../stores/userStore";
 
 const UserList = () => {
     const users = useSelector(selectUsers);

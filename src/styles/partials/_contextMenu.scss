@@ -1,0 +1,110 @@
+.context-menu-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+  
+    &.hidden .context-menu {
+      animation: hidden-context 250ms ease-in-out forwards;
+    }
+  
+  
+    &.unhidden .context-menu {
+      animation: unhidden-context 250ms ease-in-out forwards;
+    }
+  
+    @keyframes unhidden-context {
+      0% {
+        opacity: 0;
+        transform: scale(0, 0);
+      }
+  
+      100% {
+        opacity: 1;
+        transform: scale(1, 1);
+      }
+    }
+  
+    @keyframes hidden-context {
+      0% {
+        opacity: 1;
+        transform: scale(1, 1);
+      }
+  
+      100% {
+        opacity: 0;
+        transform: scale(0, 0);
+      }
+    }
+  
+    &.really-hidden {
+      display: none;
+    }
+  
+  
+    .context-menu {
+      min-width: 220px;
+      background: var(--sendBackground);
+      color: var(--text);
+      position: absolute;
+      border-radius: 10px;
+      box-shadow: 3px 3px 15px rgba(0, 0, 0, .10);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+  
+      &.left-top {
+        transform-origin: left top;
+      }
+  
+      &.left-bottom {
+        transform-origin: left bottom;
+      }
+  
+      &.right-top {
+        transform-origin: right top;
+      }
+  
+      &.right-bottom {
+        transform-origin: right bottom;
+      }
+  
+      .element {
+        height: 64px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        transition: background-color 250ms ease-in-out;
+        cursor: pointer;
+  
+        &.red {
+          color: var(--error);
+  
+          .tgico {
+            color: var(--error);
+          }
+        }
+  
+        .tgico {
+          color: var(--secondaryText);
+          min-width: 56px;
+          width: 56px;
+          height: 56px;
+          font-size: 26px;
+          line-height: 56px;
+          text-align: center;
+        }
+  
+        span {
+          margin-left: 16px;
+          margin-right: 16px;
+          width: 100%;
+        }
+  
+        &:hover {
+          background-color: var(--sendHover);
+        }
+      }
+  
+    }
+  }

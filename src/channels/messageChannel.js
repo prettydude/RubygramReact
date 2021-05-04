@@ -1,5 +1,5 @@
 import store from "../store";
-import { appendMessageIfCurrent, setMessages } from "../stores/activeChatStore";
+import { appendMessageIfCurrent, deleteMessage, setMessages } from "../stores/activeChatStore";
 import { appendChatMessage } from "../stores/chatsStore";
 import Channel from "./abstractChannel";
 
@@ -30,6 +30,9 @@ class MessageChannel extends Channel {
                         store.dispatch(appendMessageIfCurrent(data.message));
                         store.dispatch(appendChatMessage(data.message));
                         break;
+                    case "deleteMessage":
+                        store.dispatch(deleteMessage(data.message_id));
+                        break;
                     default:
                         console.log(data);
                 }
@@ -50,6 +53,14 @@ class MessageChannel extends Channel {
 
     requestAllMessages(peer) {
         this.performOrQueue("getMessages", {peer});
+    }
+
+    delete(id) {
+        this.performOrQueue("deleteMessage", {id});
+    }
+
+    edit(id, body) {
+        this.performOrQueue("editMessage", {id, body});
     }
 }
 

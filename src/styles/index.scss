@@ -1,5 +1,7 @@
 @import "abstracts/variables";
 
+@import "tgico";
+
 @import "base/reset";
 @import "base/common";
 @import "base/animations";
@@ -7,3 +9,4 @@
 @import "partials/messenger";
 @import "partials/login";
 @import "partials/messages";
+@import "partials/contextMenu";

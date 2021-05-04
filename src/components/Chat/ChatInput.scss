@@ -29,12 +29,18 @@
             .text-area {
                 width: 100%;
                 margin-bottom: -3px;
+                background-color: var(--borderColor);
+                color: var(--text);
 
                 padding: 0.5em 1em 0.5em 0.5em;
 
                 resize: none;
                 outline: 0;
                 border: 0;
+
+                &::placeholder {
+                    font-family: 'Roboto', sans-serif;
+                }
             }
         }
     }
@@ -46,7 +52,7 @@
         width: 4em;
         height: 4em;
         border: 0;
-        background-color: var(--primaryBackground);
+        background-color: var(--sendBackground);
         color: var(--accent);
         font-weight: bold;
         cursor: pointer;
@@ -54,7 +60,7 @@
         transition: background-color 250ms ease-in-out;
 
         &:hover {
-            background-color: var(--primaryHover);
+            background-color: var(--sendHover);
         }
     }
 }

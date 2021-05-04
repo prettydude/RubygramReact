@@ -27,6 +27,10 @@ const activeChatSlice = createSlice({
             state.messages = []
         },
 
+        deleteMessage(state, action) {
+            state.messages = state.messages.filter(msg => msg.id !== action.payload);
+        },
+
         appendMessages(state, action) {
             state.messages = state.messages.concat(action.payload)
         },
@@ -64,6 +68,7 @@ export default activeChatSlice.reducer;
 // Actions
 export const {
     setMessages,
+    deleteMessage,
     clearMessages,
     appendMessages,
     appendMessageIfCurrent,

@@ -2,13 +2,13 @@ import classNames from "classnames";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import ChannelsManager from "../channels/ChannelsManager";
-import { selectPeer } from "../stores/activeChatStore";
-import { selectCurrentUser } from "../stores/authStore";
-import { selectChats } from "../stores/chatsStore";
-import { formatDate } from "../utils/date";
+import ChannelsManager from "../../channels/ChannelsManager";
+import { selectPeer } from "../../stores/activeChatStore";
+import { selectCurrentUser } from "../../stores/authStore";
+import { selectChats } from "../../stores/chatsStore";
+import { formatDate } from "../../utils/date";
+import UserAvatar from "../UserAvatar";
 import "./ChatList.scss";
-import UserAvatar from "./UserAvatar";
 
 const ChatList = () => {
     const chats = useSelector(selectChats);
@@ -16,7 +16,7 @@ const ChatList = () => {
     const peer = useSelector(selectPeer);
 
     useEffect(() => {
-        ChannelsManager.chats.requestAllChats();
+        if(!chats || !chats.length) ChannelsManager.chats.requestAllChats();
     }, [])
     
     return (

@@ -1,0 +1,26 @@
+button.icon-button {
+    position: relative;
+    background: none;
+    color: var(--text);
+    border: 0;
+    
+    font-size: 1em;
+    width: 1em;
+    height: 1em;
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: background-color 100ms ease-in-out;
+
+    i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+        background-color: var(--primaryHover);
+    }
+}

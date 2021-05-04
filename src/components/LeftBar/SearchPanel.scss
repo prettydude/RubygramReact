@@ -1,0 +1,62 @@
+.search-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .search-panel-header {
+        display: flex;
+        border-bottom: 1px solid var(--borderColor);
+        align-items: center;
+        padding: 0.1em 0.5em 0.1em 0;
+
+        .back {
+            font-size: 1.5em;
+            width: 1.5em;
+            height: 1.5em;
+            margin: 0 0.1em;
+        }
+
+        .VInput {
+            flex-grow: 1;
+        }
+    }
+
+    .search-results {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .user {
+        display: flex;
+        padding: 0.5em;
+        border-bottom: 1px solid var(--borderColor);
+        background-color: var(--primaryBackground);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--primaryHover);
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 1em;
+
+            .name {
+                font-weight: bold;
+            }
+
+            .nickname {
+                margin-top: 0.2em;
+                color: var(--secondaryText);
+            }
+        }
+
+        .user-avatar {
+            width: 2.5em;
+            height: 2.5em;
+        }
+    }
+}

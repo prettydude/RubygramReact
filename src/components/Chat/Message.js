@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../stores/authStore";
-import { DATE_FORMAT, TIME_FORMAT } from "../utils/date";
+import ChannelsManager from "../../channels/ChannelsManager";
+import { selectCurrentUser } from "../../stores/authStore";
+import { DATE_FORMAT, TIME_FORMAT } from "../../utils/date";
+import { contextMenuListener } from "../ContextMenuComponent";
+import UserAvatar from "../UserAvatar";
 import "./Message.scss";
-import UserAvatar from "./UserAvatar";
 
 const Message = ({message}) => {
 
@@ -16,8 +18,19 @@ const Message = ({message}) => {
         in: !own,
     })
 
+    const items = []
+
+    if(own) {
+        items.push({
+            icon: "delete",
+            red: true,
+            title: "Delete",
+            onClick: () => ChannelsManager.messages.delete(message.id)
+        })
+    }
+
     return (
-        <div className={classes}>
+        <div className={classes} onContextMenu={contextMenuListener(items)}>
             {!own && <UserAvatar user={message.user}/>}
             <div className="message">
                 {!own && <div className="name">

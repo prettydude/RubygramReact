@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import TextareaAutosize from 'react-textarea-autosize';
-import ChannelsManager from "../channels/ChannelsManager";
-import { selectPeer } from "../stores/activeChatStore";
+import ChannelsManager from "../../channels/ChannelsManager";
+import { selectPeer } from "../../stores/activeChatStore";
 import "./ChatInput.scss";
 
 const TYPING_SEND_INTERVAL = 3000;
@@ -53,6 +53,7 @@ const ChatInput = () => {
 }
 
 function send(peer, message, setMessage) {
+    if(!message) return;
     ChannelsManager.messages.sendMessage(peer.id, message);
     setMessage("");
 }

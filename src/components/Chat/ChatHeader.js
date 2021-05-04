@@ -1,5 +1,5 @@
+import UserAvatar from "../UserAvatar";
 import "./ChatHeader.scss";
-import UserAvatar from "./UserAvatar";
 
 const ChatHeader = ({peer, action}) => {
     return (

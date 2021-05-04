@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { selectMessages } from "../stores/activeChatStore";
+import { selectMessages } from "../../stores/activeChatStore";
 import Message from "./Message";
 
 const MessageContainer = () => {

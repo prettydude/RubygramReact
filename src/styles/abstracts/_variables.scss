@@ -16,8 +16,33 @@
     --ownMessageBackground: #eeffde;
     --peerMessageBackground: white;
 
+    --sendBackground: var(--primaryBackground);
+    --sendHover: var(--primaryHover);
+
+    --chatBackground: #ffffff;
+
     @media (prefers-color-scheme: dark) {
-        // TODO dark theme
+        --accent: #50a2e9;
+        --accentHover: #4796E1;
+        --error: #eb4848;
+
+        --text: #eeeeee;
+        --invertedText: black;
+        --secondaryText: #999999;
+
+        --borderColor: #232D52;
+        --borderSecondaryColor: #2A3560;
+
+        --primaryBackground: #0F1E41;
+        --primaryHover: #222B4F;
+
+        --ownMessageBackground: #152550;
+        --peerMessageBackground: #203060;
+
+        --sendBackground: var(--borderColor);
+        --sendHover: var(--borderSecondaryColor);
+
+        --chatBackground: #0a1530;
     }
 }   
 

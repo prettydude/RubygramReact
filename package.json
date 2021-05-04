@@ -17,11 +17,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/prettydude/nulp-timetable"
+    "url": "https://github.com/prettydude/rubygramreact"
   },
   "author": "prettydude",
   "license": "MIT",
-  "homepage": "https://prettydude.github.io/nulp-timetable",
+  "homepage": "https://prettydude.github.io/rubygramreact",
   "dependencies": {
     "@keymastervn/redux-token-auth": "^0.19.5",
     "@rails/actioncable": "^6.1.3-1",

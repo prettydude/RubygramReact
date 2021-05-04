@@ -14,7 +14,7 @@
         user-select: none;
         transition: top 100ms, font-size 100ms, color 100ms;
         font-size: 0.9em;
-        color: var(--borderColor);
+        color: var(--secondaryColor);
         padding: 0.3em;
         border-radius: 1em;
         pointer-events: none;
@@ -22,12 +22,15 @@
 
     input {
         height: 100%;
+        width: 100%;
         padding: 1em 0.5em;
         border: 1px solid var(--borderSecondaryColor);
         transition: 100ms ease-in-out box-shadow;
         border-radius: 10px;
         font-size: 1em;
         outline: 0;
+        background-color: var(--primaryBackground);
+        color: var(--text);
 
         &:disabled {
             background-color: var(--primaryHover);
@@ -112,7 +115,7 @@
         }
 
         &:not(:placeholder-shown) + label {
-            background-color: #fff;
+            background-color: var(--primaryBackground);
             top: 0;
             font-size: 0.75em;
             font-weight: 500;

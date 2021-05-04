@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { HashRouter, Route, Switch } from "react-router-dom"
 import ChannelsManager from './channels/ChannelsManager'
+import ContextMenuWrapper from './components/ContextMenuComponent'
 import Login from './routes/Login'
 import Messenger from "./routes/Messenger"
 import store from './store'
@@ -22,12 +23,15 @@ const App = () => {
     }, [])
 
     return (
+        <>
+        <ContextMenuWrapper/>
         <HashRouter>
             <Switch>
                 <Route exact={true} path="/" component={signInWrapper(Messenger)} />
                 <Route path="/login" component={Login} />
             </Switch>
         </HashRouter>
+        </>
     )
 }
 
