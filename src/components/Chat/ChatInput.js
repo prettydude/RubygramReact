@@ -39,7 +39,8 @@ const ChatInput = () => {
                                         value={message}
                                         onKeyPress={ev => {
                                             if(ev.key === "Enter") {
-                                                if(!ev.ctrlKey && !ev.shiftKey) {
+                                                const isMobile = window.matchMedia("max-width: 992px").matches;
+                                                if(!ev.ctrlKey && !ev.shiftKey && !isMobile) {
                                                     send(peer, message, setMessage);
                                                     ev.preventDefault();
                                                 }
