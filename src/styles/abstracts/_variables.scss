@@ -24,7 +24,9 @@
 
     --chatInputColor: #ffffff;
 
-    --scrollbarColor: rgba(0,0,0,0.3);
+    --transparentContrast: rgba(0,0,0,0.3);
+
+    --scrollbarColor: var(--transparentContrast);
 
     @media (prefers-color-scheme: dark) {
         --accent: #50a2e9;

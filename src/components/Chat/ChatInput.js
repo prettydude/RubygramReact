@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import TextareaAutosize from 'react-textarea-autosize';
 import ChannelsManager from "../../channels/ChannelsManager";
 import { selectPeer } from "../../stores/activeChatStore";
+import { IS_DESKTOP_SCREEN } from "../../utils/browser";
 import "./ChatInput.scss";
 
 const TYPING_SEND_INTERVAL = 3000;
@@ -39,8 +40,7 @@ const ChatInput = () => {
                                         value={message}
                                         onKeyPress={ev => {
                                             if(ev.key === "Enter") {
-                                                const isMobile = window.matchMedia("max-width: 992px").matches;
-                                                if(!ev.ctrlKey && !ev.shiftKey && !isMobile) {
+                                                if(IS_DESKTOP_SCREEN && !ev.ctrlKey && !ev.shiftKey) {
                                                     send(peer, message, setMessage);
                                                     ev.preventDefault();
                                                 }

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import gfm from 'remark-gfm';
 import ChannelsManager from "../../channels/ChannelsManager";
 import { selectCurrentUser } from "../../stores/authStore";
+import { copyTextToClipboard } from "../../utils/clipboard";
 import { DATE_FORMAT, TIME_FORMAT } from "../../utils/date";
 import CodeBlock from "../Basic/CodeBlock";
 import { contextMenuListener } from "../ContextMenuComponent";
@@ -23,7 +24,11 @@ const Message = ({ message }) => {
         in: !own,
     })
 
-    const items = []
+    const items = [{
+        icon: "copy",
+        title: "Copy",
+        onClick: () => copyTextToClipboard(message.body)
+    }];
 
     if (own) {
         items.push({
