@@ -43,7 +43,7 @@ const config = {
 //catch server validation messages, because library can't
 axios.interceptors.response.use(null, error => {
     const response = error.response;
-    if(response && response.config.url.includes(AUTH_URL) && response.data.errors) {
+    if(response && response.config.url.startsWith(AUTH_URL) && response.data.errors) {
         store.dispatch(setDeviseErrors(response.data.errors));
         return Promise.reject(new Error("Validation error"));
     } else {
