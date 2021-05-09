@@ -45,7 +45,7 @@ const UserFragment = ({user}) => {
             <UserAvatar user={user}/>
             <div className="info">
                 <div className="user-name">{user.name}</div>
-                {user.nickname && <div className="user-nickname">{user.nickname}</div>}
+                {user.nickname && <div className="user-nickname">@{user.nickname}</div>}
             </div>
         </div>
     )
