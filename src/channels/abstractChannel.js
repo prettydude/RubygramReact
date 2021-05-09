@@ -89,11 +89,11 @@ class Channel {
     _onDisconnect() {
         clearInterval(this.reconnectInterval);
 
-        let time = RECONNECT_INTERVAL;
+        /*let time = RECONNECT_INTERVAL;
         this.reconnectInterval = setInterval(() => {
             console.log("Trying to reconnect...")
             this.reconnect();
-        }, time);
+        }, time);*/
     }
 
     _loadAuthData() {

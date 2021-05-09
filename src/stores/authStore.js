@@ -16,6 +16,7 @@ export const initialAuthState = {
             name: null,
             nickname: null,
             image: null,
+            avatar_url: null,
         },
     },
 }
@@ -30,6 +31,7 @@ const config = {
         id: "id",
         provider: "provider",
         image: "image",
+        avatar_url: "avatar_url"
     },
     userRegistrationAttributes: {
         nickname: 'nickname',

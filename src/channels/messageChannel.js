@@ -1,6 +1,7 @@
 import store from "../store";
 import { appendMessageIfCurrent, deleteMessage, setMessages } from "../stores/activeChatStore";
 import { appendChatMessage } from "../stores/chatsStore";
+import { blobToByteArray } from "../utils/clipboard";
 import Channel from "./abstractChannel";
 
 class MessageChannel extends Channel {
@@ -40,15 +41,33 @@ class MessageChannel extends Channel {
         })
     }
 
-    sendMessage(peer_id, text) {
-        this.performOrQueue("sendMessage", {
-            message: {
-                text: text,
-            },
-            peer: {
-                id: peer_id
-            },
-        });
+    sendMessage(peer_id, text, blob, filename) {
+        if(!blob) {
+            this.performOrQueue("sendMessage", {
+                message: {
+                    text: text,
+                },
+                peer: {
+                    id: peer_id
+                },
+            });
+        } else {
+            blobToByteArray(blob).then(arr => {
+                this.performOrQueue("sendMessage", {
+                    message: {
+                        text: "",
+                        file: {
+                            bytes: arr,
+                            content_type: blob.type,
+                            filename,
+                        },
+                    },
+                    peer: {
+                        id: peer_id
+                    },
+                });
+            })
+        }
     }
 
     requestAllMessages(peer) {

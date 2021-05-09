@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import TextareaAutosize from 'react-textarea-autosize';
 import ChannelsManager from "../../channels/ChannelsManager";
 import { selectPeer } from "../../stores/activeChatStore";
-import { IS_DESKTOP_SCREEN } from "../../utils/browser";
+import { askForFile, IS_DESKTOP_SCREEN } from "../../utils/browser";
+import IconButton from "../Basic/IconButton";
 import "./ChatInput.scss";
 
 const TYPING_SEND_INTERVAL = 3000;
@@ -14,7 +15,7 @@ const ChatInput = () => {
     const lastSentRef = useRef();
 
     useEffect(() => {
-        setMessage(""); //reset messege on chat change
+        setMessage(""); //reset message on chat change
     }, [peer.id]);
 
     const sendTyping = () => {
@@ -23,10 +24,16 @@ const ChatInput = () => {
             lastSentRef.current = Date.now();
         }
     };
-    
+
+    const uploadFile = () => {
+        askForFile("*", (url, file) => {
+            ChannelsManager.messages.sendMessage(peer.id, "", file, file.name);
+        });
+    }    
 
     return (
         <div className="chat-input-wrapper">
+            <IconButton className="chat-input-button attach" icon="attach" onClick={() => uploadFile()}/>
             <div className="chat-input">
                 <div className="chat-input-scroll-wrapper">
                     <TextareaAutosize autoFocus
@@ -48,7 +55,7 @@ const ChatInput = () => {
                                         }}/>
                 </div>
             </div>
-            <button className="send" onClick={() => send(peer, message, setMessage)}>Send</button>
+            <button className="chat-input-button send" onClick={() => send(peer, message, setMessage)}>Send</button>
         </div>
     )
 }

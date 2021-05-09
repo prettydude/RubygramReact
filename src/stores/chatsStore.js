@@ -64,6 +64,14 @@ const chatsSlice = createSlice({
                     chat.action = "";
                 }
             })
+        },
+
+        updateChatsAvatar(state, action) {
+            const user = action.payload;
+            state.chats.forEach(chat => {
+                if(chat.sender_id === user.id) chat.sender = user;
+                if(chat.recipient_id === user.id) chat.recipient = user;
+            })
         }
     },
 })
@@ -85,6 +93,7 @@ export const {
     appendChatMessage,
     setTyping,
     checkTyping,
+    updateChatsAvatar,
 } = chatsSlice.actions;
 
 //Selectors

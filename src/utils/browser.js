@@ -55,3 +55,30 @@ export const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAge
 
 export const IS_MOBILE_SCREEN = window.innerWidth < 991.98;
 export const IS_DESKTOP_SCREEN = !IS_MOBILE_SCREEN;
+
+export function askForFile(accept, callback, asBuffer = false, multiple = false) {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = accept;
+    input.multiple = multiple
+    input.style.visibility="hidden";
+    document.body.append(input);
+    input.addEventListener("change", e => {
+        Array.from(e.target.files).forEach(file => {
+            var reader = new FileReader();
+            if (asBuffer) {
+                reader.readAsArrayBuffer(file)
+            } else {
+                reader.readAsDataURL(file);
+            }
+
+            reader.onload = readerEvent => {
+                input.remove()
+
+                callback(reader.result, file);
+            }
+        })
+    })
+    input.click();
+    //input.remove(); //Safari
+}

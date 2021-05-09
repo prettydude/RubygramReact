@@ -11,18 +11,15 @@ const AVATAR_COLORS = [
     "#fba76f"
 ]
 
-const UserAvatar = ({user}) => {
-    const image = user.image;
+const UserAvatar = ({user, ...otherProps}) => {
+    const url = user.avatar_url;
 
     return (
-        <div className="user-avatar" style={{backgroundColor: AVATAR_COLORS[user.id % AVATAR_COLORS.length]}}>
-            {image ? 
-                <img src={image} alt={`${user.name} avatar`} className="avatar-image"/>
-                :
-                <div className="avatar-text">
-                    {(user.name || "???").slice(0, 2)}
-                </div>
-            }
+        <div className="user-avatar" style={{backgroundColor: url ? "black" : AVATAR_COLORS[user.id % AVATAR_COLORS.length]}} {...otherProps}>
+            <div className="avatar-text">
+                {(user.name || "???").slice(0, 2)}
+            </div>
+            {url && <img src={url} alt={`${user.name} avatar`} className="avatar-image"/>}
         </div>
     )
 }

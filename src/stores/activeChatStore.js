@@ -63,6 +63,11 @@ const activeChatSlice = createSlice({
             state.peer = currentUser === action.payload.recipient.id ? action.payload.sender : action.payload.recipient;
             state.messages = action.payload.messages;
             state.conversationId = action.payload.id
+        },
+
+        checkAndUpdatePeerAvatar(state, action) {
+            const user = action.payload;
+            if(state.peer?.id === user.id) state.peer = user;
         }
     },
 })
@@ -80,7 +85,8 @@ export const {
     setPeer,
     clearPeer,
     resetActiveChat,
-    setConversation 
+    setConversation,
+    checkAndUpdatePeerAvatar
 } = activeChatSlice.actions;
 
 //Selectors

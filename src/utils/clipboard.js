@@ -68,3 +68,9 @@ function convertToPng(imgBlob) {
 		  }; 
 	})
 }
+
+export async function blobToByteArray(blob) {
+    const buffer = await blob.arrayBuffer();
+    const view = new Uint8Array(buffer);
+    return Array.from(view);
+}

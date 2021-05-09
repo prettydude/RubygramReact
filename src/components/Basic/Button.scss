@@ -12,6 +12,7 @@
     cursor: pointer;
     font-weight: 500;
     font-size: 1em;
+    transition: background-color 100ms ease-in-out;
 
     &:hover {
         background-color: var(--accentHover);

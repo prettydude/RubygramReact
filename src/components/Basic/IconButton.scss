@@ -11,7 +11,9 @@ button.icon-button {
     border-radius: 50%;
     cursor: pointer;
 
-    transition: background-color 100ms ease-in-out;
+    background-color: transparent;
+
+    transition: background-color 150ms ease-in-out;
 
     i {
         position: absolute;

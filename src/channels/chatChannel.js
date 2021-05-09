@@ -1,8 +1,10 @@
 import store from "../store";
-import { setConversation } from "../stores/activeChatStore";
-import { addChat, setChats, setTyping } from "../stores/chatsStore";
+import { checkAndUpdatePeerAvatar, setConversation } from "../stores/activeChatStore";
+import { verifyCredentials } from "../stores/authStore";
+import { addChat, setChats, setTyping, updateChatsAvatar } from "../stores/chatsStore";
 import { setSearchResults } from "../stores/interfaceStore";
 import { setUsers } from "../stores/userStore";
+import { blobToByteArray } from "../utils/clipboard";
 import Channel from "./abstractChannel";
 
 class ChatChannel extends Channel {
@@ -44,6 +46,11 @@ class ChatChannel extends Channel {
                     case "searchUsers":
                         store.dispatch(setSearchResults(data.users));
                         break;
+                    case "updateAvatar":
+                        store.dispatch(updateChatsAvatar(data.user));
+                        store.dispatch(checkAndUpdatePeerAvatar(data.user));
+                        verifyCredentials(store);
+                        break;
                     default:
                         // console.log(data);
                 }
@@ -77,6 +84,17 @@ class ChatChannel extends Channel {
 
     searchUsers(query) {
         this.performOrQueue("searchUsers", {query});
+    }
+
+    uploadAvatar(blob) {
+        if(blob.size > 5*1024*1024) return;
+        
+        blobToByteArray(blob).then(arr => {
+            this.performOrQueue("uploadAvatar", {
+                bytes: arr,
+                content_type: blob.type
+            });
+        })
     }
 }
 
