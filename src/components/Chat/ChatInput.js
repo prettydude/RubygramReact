@@ -29,7 +29,16 @@ const ChatInput = () => {
         askForFile("*", (url, file) => {
             ChannelsManager.messages.sendMessage(peer.id, "", file, file.name);
         });
-    }    
+    }
+
+    const checkPaste = ev => {
+        const item = Array.from(ev.clipboardData.items).find(el => el.type.includes("image"));
+        if(item) {
+            ev.preventDefault();
+            const file = item.getAsFile();
+            ChannelsManager.messages.sendMessage(peer.id, "", file, file.name);
+        }
+    }
 
     return (
         <div className="chat-input-wrapper">
@@ -45,6 +54,7 @@ const ChatInput = () => {
                                             sendTyping();
                                         }} 
                                         value={message}
+                                        onPaste={ev => checkPaste(ev)}
                                         onKeyPress={ev => {
                                             if(ev.key === "Enter") {
                                                 if(IS_DESKTOP_SCREEN && !ev.ctrlKey && !ev.shiftKey) {
