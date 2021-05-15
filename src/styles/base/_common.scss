@@ -12,13 +12,14 @@ html, body {
     position: relative;
 
     font-family: 'Roboto', sans-serif;
-
-    color: var(--text);
-    background-color: var(--primaryBackground);
 }
 
 a, a:hover, a:visited, a:active {
     color: var(--linkColor);
+}
+
+.dark .loader {
+    filter: invert(0.9);
 }
 
 .mobile-hidden {

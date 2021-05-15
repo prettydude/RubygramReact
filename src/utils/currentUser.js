@@ -1,7 +1,7 @@
 //костиль для деяких редюсерів які це перевіряють
 
 import store from "../store";
-import {selectCurrentUser} from "../stores/authStore";
+import { selectCurrentUser } from "../stores/authStore";
 
 let user = store?.getState?.()?.reduxTokenAuth?.currentUser || {};
 

@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectSignIn, selectVerificationBeenAttempted} from "../stores/authStore"
+import { useHistory } from "react-router";
+import LoaderComponent from "../components/LoaderComponent";
+import { selectSignIn, selectVerificationBeenAttempted } from "../stores/authStore";
 
 const LOGIN_URL = "/login"
 
 export function signInWrapper(WrappedComponent, ...otherProps) {
-    return ({history}) => {
+    return () => {
         let isSignedIn = useSelector(selectSignIn);
         let hasVerificationBeenAttempted = useSelector(selectVerificationBeenAttempted);
+        let history = useHistory();
 
         useEffect(() => {
             if (hasVerificationBeenAttempted && !isSignedIn) {
@@ -17,6 +20,6 @@ export function signInWrapper(WrappedComponent, ...otherProps) {
         return hasVerificationBeenAttempted && isSignedIn ? 
                 <WrappedComponent {...otherProps} /> 
                 : 
-                <div>Logging in...</div>;
+                <LoaderComponent/>;
     }
 }

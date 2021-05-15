@@ -20,7 +20,7 @@
     --sendBackground: var(--primaryBackground);
     --sendHover: var(--primaryHover);
 
-    --chatBackground: #ffffff;
+    --chatBackground: #B2CEE0;
 
     --chatInputColor: #ffffff;
 
@@ -28,7 +28,7 @@
 
     --scrollbarColor: var(--transparentContrast);
 
-    @media (prefers-color-scheme: dark) {
+    .dark {
         --accent: #50a2e9;
         --accentHover: #4796E1;
         --error: #eb4848;
