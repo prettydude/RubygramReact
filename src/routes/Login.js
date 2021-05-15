@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Button from "../components/Basic/Button";
 import Input from "../components/Basic/Input";
+import LoaderComponent from "../components/LoaderComponent";
 import { resetActiveChat } from "../stores/activeChatStore";
 import { registerUser, selectCurrentUser, signInUser } from "../stores/authStore";
 import { clearChats } from "../stores/chatsStore";
@@ -50,7 +51,7 @@ const Login = () => {
     }, [user, history]);
 
     if(user.isLoading || !user.hasVerificationBeenAttempted) {
-        return <div>Loading...</div>
+        return <LoaderComponent/>
     }
 
     const validate = (register) => {
