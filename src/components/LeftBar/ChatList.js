@@ -20,6 +20,7 @@ const ChatList = () => {
 
     useEffect(() => {
         if(!chats || !chats.length) ChannelsManager.chats.requestAllChats();
+        setTimeout(() => setTimeOut(true), 2000);
     }, [])
 
     let content = <LoaderComponent/>;
