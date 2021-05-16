@@ -41,33 +41,31 @@ class MessageChannel extends Channel {
         })
     }
 
-    sendMessage(peer_id, text, blob, filename) {
-        if(!blob) {
-            this.performOrQueue("sendMessage", {
-                message: {
-                    text: text,
+    sendMessage(peer_id, text) {
+        this.performOrQueue("sendMessage", {
+            message: {
+                text: text,
+            },
+            peer: {
+                id: peer_id
+            },
+        });
+    }
+
+    sendFile(peer_id, blob, filename) {
+        filename = filename || blob.filename // get filename from blob, if not present
+        blobToByteArray(blob).then(arr => {
+            this.performOrQueue("sendFile", {
+                file: {
+                    bytes: arr,
+                    content_type: blob.type,
+                    filename,
                 },
                 peer: {
                     id: peer_id
                 },
             });
-        } else {
-            blobToByteArray(blob).then(arr => {
-                this.performOrQueue("sendMessage", {
-                    message: {
-                        text: "",
-                        file: {
-                            bytes: arr,
-                            content_type: blob.type,
-                            filename,
-                        },
-                    },
-                    peer: {
-                        id: peer_id
-                    },
-                });
-            })
-        }
+        })
     }
 
     requestAllMessages(peer) {

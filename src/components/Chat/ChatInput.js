@@ -27,7 +27,7 @@ const ChatInput = () => {
 
     const uploadFile = () => {
         askForFile("*", (url, file) => {
-            ChannelsManager.messages.sendMessage(peer.id, "", file, file.name);
+            ChannelsManager.messages.sendFile(peer.id, file, file.name);
         });
     }
 
@@ -36,7 +36,7 @@ const ChatInput = () => {
         if(item) {
             ev.preventDefault();
             const file = item.getAsFile();
-            ChannelsManager.messages.sendMessage(peer.id, "", file, file.name);
+            ChannelsManager.messages.sendFile(peer.id, file, file.name);
         }
     }
 
