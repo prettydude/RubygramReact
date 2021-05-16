@@ -3,11 +3,8 @@ import MessageChannel from "./messageChannel";
 
 class ChannelsManager {
 
-    init() {
-        this.openAll();
-    }
-
     closeAll() {
+        if(!this.opened) return;
         this.chats.close();
         this.messages.close();
         this.opened = false;

@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useComponentWillMount } from "../utils/hooks";
 import "./Theme.scss";
 
 const ANIMATION_TIME = 500;
@@ -27,13 +28,7 @@ const ThemeWrapper = ({ setInitiateChange, setTheme, children }) => {
         const themeable = ref.current;
         if(!themeable) return false;
 
-        const currentTheme = [...themeable.classList].filter(el => el !== "theme")[0]; // FIXME
-
         const clone = themeable.cloneNode(true);
-        clone.className = "";
-        clone.classList.add(currentTheme);
-        console.log(nextTheme, currentTheme);
-        clone.classList.add("theme");
         clone.classList.add("dummy");
         window.document.body.appendChild(clone);
 
@@ -68,7 +63,7 @@ const ThemeWrapper = ({ setInitiateChange, setTheme, children }) => {
             toggleChange(newTheme, x, y);
             return true;
         }));
-    }, []);
+    }, [animating]);
 
     return (
         <div className={classNames({
@@ -82,8 +77,10 @@ const ThemeWrapper = ({ setInitiateChange, setTheme, children }) => {
 }
 
 const ContextWrapper = ({children}) => {
-    const checkTheme = !localStorage.getItem("theme") && localStorage.setItem("theme", (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light");
-    
+    useComponentWillMount(() => {
+        !localStorage.getItem("theme") && localStorage.setItem("theme", (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light");
+    })
+
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
     const [initiateChange, setInitiateChange] = useState(() => DEFAULT_CHANGE_FUNCTION);
 

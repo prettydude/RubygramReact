@@ -13,7 +13,7 @@ import { resetActiveChat, selectCurrentChatId, selectPeer } from '../stores/acti
 import { selectCurrentUser } from '../stores/authStore';
 import { selectChats } from '../stores/chatsStore';
 import { selectSearchMode } from '../stores/interfaceStore';
-import { useQuery } from '../utils/hooks';
+import { useComponentWillMount, useQuery } from '../utils/hooks';
 
 const Messenger = () => {
 	const user = useSelector(selectCurrentUser);
@@ -26,6 +26,10 @@ const Messenger = () => {
 	const dispatch = useDispatch();
 
 	const chat = chats.find(chat => chat.id === chatId);
+
+	useComponentWillMount(() => {
+		ChannelsManager.openAll();
+	});
 
 	const peerId = useQuery().peer;
 	useEffect(() => {

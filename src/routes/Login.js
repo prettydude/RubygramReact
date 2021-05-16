@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import ChannelsManager from "../channels/ChannelsManager";
 import Button from "../components/Basic/Button";
 import Input from "../components/Basic/Input";
 import LoaderComponent from "../components/LoaderComponent";
@@ -9,6 +10,7 @@ import { registerUser, selectCurrentUser, signInUser } from "../stores/authStore
 import { clearChats } from "../stores/chatsStore";
 import { selectDeviseErrors } from "../stores/interfaceStore";
 import { clearUsers } from "../stores/userStore";
+import { useComponentWillMount } from "../utils/hooks";
 
 const Login = () => {
     const user = useSelector(selectCurrentUser);
@@ -28,11 +30,12 @@ const Login = () => {
     const dispatch = useDispatch();
     
     //clear store
-    useEffect(() => {
+    useComponentWillMount(() => {
         dispatch(resetActiveChat());
         dispatch(clearChats());
         dispatch(clearUsers());
-    }, [dispatch]);
+        ChannelsManager.closeAll();
+    });
 
     useEffect(() => {
         if(deviseErrors?.full_messages) {

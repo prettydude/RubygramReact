@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { HashRouter, Route, Switch } from "react-router-dom"
-import ChannelsManager from './channels/ChannelsManager'
 import ContextMenuWrapper from './components/ContextMenuComponent'
 import Theme from "./components/Theme"
 import Login from './routes/Login'
@@ -17,7 +16,6 @@ console.log(`Running in ${__IS_PRODUCTION__ ? "production" : "development"} mode
 const App = () => {
     // Init once
     useEffect(() => {
-        ChannelsManager.init();
         verifyCredentials(store);
         initCurrentUserListener();
     }, [])

@@ -13,3 +13,6 @@ Available here: https://prettydude.github.io/RubygramReact
 - Typing status in chats
 - Dark and light theme
 - Deleting messages
+  
+## Known bugs
+- WebSockets crash not handled properly. Workaround: reload page.
