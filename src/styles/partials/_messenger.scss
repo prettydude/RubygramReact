@@ -23,6 +23,7 @@
     .main {
         flex-grow: 1;
         display: flex;
+        width: 100%;
         background-color: var(--chatBackground);
 
         .select-chat {

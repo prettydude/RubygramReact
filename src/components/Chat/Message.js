@@ -40,8 +40,7 @@ const Message = ({ message }) => {
         })
     }
 
-    const isImage = message.file?.content_type?.startsWith("image");
-
+    const isImage = message.file_blob?.content_type?.startsWith("image");
     return (
         <div className={classes} onContextMenu={contextMenuListener(items)}>
             {!own && <UserAvatar user={message.user} />}
@@ -55,11 +54,11 @@ const Message = ({ message }) => {
                             :
                             <div className="attachment-file" onClick={() => downloadURL(message.file_url)}>
                                 <div className="icon">
-                                    {iconForFilename(message.file.filename)}
+                                    {iconForFilename(message.file_blob.filename)}
                                 </div>
                                 <div className="file-info">
-                                    <div className="filename">{message.file.filename}</div>
-                                    <div className="filesize">{formatSize(message.file.byte_size)}</div>
+                                    <div className="filename">{message.file_blob.filename}</div>
+                                    <div className="filesize">{formatSize(message.file_blob.byte_size)}</div>
                                 </div>
                             </div>
                         }

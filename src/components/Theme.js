@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useRef, useState } from "r
 import { useComponentWillMount } from "../utils/hooks";
 import "./Theme.scss";
 
-const ANIMATION_TIME = 500;
+const ANIMATION_TIME = 800;
 
 const DEFAULT_CHANGE_FUNCTION = (newTheme, x, y) => {
     console.log("Don't call theme change before init!");
@@ -37,7 +37,7 @@ const ThemeWrapper = ({ setInitiateChange, setTheme, children }) => {
         let animationStart = Date.now();
 
         const animate = () => {
-            let percent = (Date.now() - animationStart) / ANIMATION_TIME;
+            let percent = (Date.now() - animationStart) / ANIMATION_TIME; // 0 - 1
             if(percent > 1) {
                 clone.remove();
                 setAnimating(false);
