@@ -56,7 +56,10 @@ const Messenger = () => {
 					<ChatList/>
 				</div>
 			}
-			<div className="main">
+			<div className={classNames({
+					"main": true,
+					"mobile-hidden": !peer
+				})}>
 				{peer ?
 					<div className="chat" style={{/*backgroundImage: `url("./images/default_bg.jpg")`*/}}>
 						<ChatHeader peer={peer} action={chat?.action}/>
