@@ -22,19 +22,17 @@ const MessageContainer = () => {
 
 function insertDateSeparators(messages) {
     return messages.map((msg, i, arr) => {
-        if(i === (arr.length - 1)) { // last element
-            return msg;
-        } else if(i === 0) {
+        if(i === 0) {
             return [{separator: true, date: new Date(msg.created_at), id: `start-date-separator`}, msg];
         } else {
             const msg1Date = new Date(msg.created_at);
-            const msg2Date = new Date(arr[i+1].created_at);
+            const msg2Date = new Date(arr[i-1].created_at);
             
             const isSameDay = (msg1Date.getDate() === msg2Date.getDate() 
                 && msg1Date.getMonth() === msg2Date.getMonth()
                 && msg1Date.getFullYear() === msg2Date.getFullYear())
             if(!isSameDay) {
-                return [msg, {separator: true, date: msg2Date, id: `${msg.id}-date-separator`}]
+                return [{separator: true, date: msg2Date, id: `${msg.id}-date-separator`}, msg];
             } else {
                 return msg;
             }
