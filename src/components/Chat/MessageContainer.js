@@ -24,6 +24,8 @@ function insertDateSeparators(messages) {
     return messages.map((msg, i, arr) => {
         if(i === (arr.length - 1)) { // last element
             return msg;
+        } else if(i === 0) {
+            return [{separator: true, date: new Date(msg.created_at), id: `start-date-separator`}, msg];
         } else {
             const msg1Date = new Date(msg.created_at);
             const msg2Date = new Date(arr[i+1].created_at);
