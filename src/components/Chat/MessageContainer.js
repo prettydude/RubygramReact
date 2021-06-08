@@ -32,7 +32,7 @@ function insertDateSeparators(messages) {
                 && msg1Date.getMonth() === msg2Date.getMonth()
                 && msg1Date.getFullYear() === msg2Date.getFullYear())
             if(!isSameDay) {
-                return [{separator: true, date: msg2Date, id: `${msg.id}-date-separator`}, msg];
+                return [{separator: true, date: msg1Date, id: `${msg.id}-date-separator`}, msg];
             } else {
                 return msg;
             }
