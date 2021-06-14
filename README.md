@@ -1,7 +1,7 @@
 # RubygramReact
-Front end for [Rubygram](https://prettydude.github.io/Rubygram) written in React with Redux
+Front end for [Rubygram](https:/zubiden.github.io/Rubygram) written in React with Redux
 
-Available here: https://prettydude.github.io/RubygramReact
+Available here: https://zubiden.github.io/RubygramReact
 
 ## Features
 
